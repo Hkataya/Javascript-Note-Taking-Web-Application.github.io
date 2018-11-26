@@ -103,6 +103,8 @@ $(updateBtn).addClass('update-btn');
 updateBtn.innerHTML = "<i class='fas fa-edit'></i>";
 
     
+    
+    
         
 var deleteBtn  = document.createElement("button");
 $(deleteBtn).addClass('delete-btn');
