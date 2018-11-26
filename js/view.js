@@ -92,10 +92,7 @@ $(body).append(li);
 }
     
 
-var colorBtn = document.createElement("button");
-$(colorBtn).addClass('color-btn');
 
-var picker = new Picker(colorBtn);
 
     
 var updateBtn = document.createElement("button");
@@ -115,15 +112,10 @@ deleteBtn.innerHTML = "<i class='fas fa-trash'></i>";
     
 $(elem).append(head);
 $(elem).append(body);
-$(elem).append(colorBtn); 
+ 
 $(elem).append(updateBtn); 
 $(elem).append(deleteBtn);
 
-    
-picker.ondone = function(color){
-        
-        console.log(color.rgbaString);   
-     }
 
 $(updateBtn).on('click', function(){uiCntrl.update($(this).parent().attr("id"))});    
 $(deleteBtn).on("click", function(){events.deleteNote(this)});
