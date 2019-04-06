@@ -1,12 +1,10 @@
 
-        
-
-
 
 
 var events = {
     
  
+    
 generate: function(){
    uiCntrl.createNote(randomString());
     

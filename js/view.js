@@ -16,6 +16,7 @@ createNote : function(id){
     
 //Drawing ui elements
 var div  = document.createElement("div");
+
 $(div).addClass("note");
 $(div).attr('id', id);
 var title = document.createElement("input");
@@ -24,21 +25,30 @@ var desc = document.createElement("textarea");
 $(desc).addClass("desc");
 var add = document.createElement('button');
 $(add).addClass("add-btn");  
-    add.innerHTML = "+";
-var listBtn  = document.createElement("button");   
-$(listBtn).addClass('list-btn');
-listBtn.innerHTML = "<i class='fas fa-list-ul'></i>";
-
-    //Appending ui elements
+add.innerHTML = "+";
+    
+    
+//Appending ui elements
 $(div).append(title);
 $(div).append(desc);
-    $(div).append(listBtn);
 $(div).append(add);
 $("#main").append(div);
     
     
     
   //event handlers  
+
+$('#' + id + ' .title').keypress(function(event){
+var keycode = (event.keyCode ? event.keyCode : event.which);
+if(keycode == '13'){
+   
+    desc.focus();
+    
+}});
+
+
+    
+    
 $('#' + id + ' .desc').keypress(function(event){
 var keycode = (event.keyCode ? event.keyCode : event.which);
 if(keycode == '13'){
@@ -46,14 +56,7 @@ if(keycode == '13'){
 }});
 
     
-
-
-$(listBtn).on("click", function(){
-            uiCntrl.list(id);
-  });
     
-
-
 $(add).on("click", function(){
          
         
@@ -64,59 +67,27 @@ $(add).on("click", function(){
     
 },
   
+    
 appendNote : function(id,  title, desc){
 var elem = $("#" + id);
-$(elem).empty();
-var head = document.createElement("h2");
-$(head).addClass("title");
-head.innerHTML= title;
-    
-    
-        
-if(desc.length<2){    
-var body = document.createElement("p");
-body.innerHTML = desc[0];
-$(body).addClass("desc2");
-}
-        
-else {
-            
-var body = document.createElement("ul");
-for(var i =0; i<desc.length; i++){
-var li = document.createElement('li');
-li.innerHTML = desc[i];
-$(body).append(li);           
-}
-    $(body).addClass("desc2");
-                    
-}
-    
+$(elem).empty();     
 
+    $(elem).html("<h3>"+ title +"</h3> <p>"+desc+"</p>");
 
 
     
 var updateBtn = document.createElement("button");
 $(updateBtn).addClass('update-btn');
 updateBtn.innerHTML = "<i class='fas fa-edit'></i>";
-
-    
-    
-    
-        
+  
 var deleteBtn  = document.createElement("button");
 $(deleteBtn).addClass('delete-btn');
 deleteBtn.innerHTML = "<i class='fas fa-trash'></i>";
-    
 
     
-    
-$(elem).append(head);
-$(elem).append(body);
- 
+
 $(elem).append(updateBtn); 
 $(elem).append(deleteBtn);
-
-
 $(updateBtn).on('click', function(){uiCntrl.update($(this).parent().attr("id"))});    
 $(deleteBtn).on("click", function(){events.deleteNote(this)});
 
@@ -136,29 +107,6 @@ deleteNote : function(elem){
    } ,
     
     
-list: function(id){
-    arr = [];
-    var div = $('#'+ id);
-    console.log(id);
-    $(div).empty();
-   var title = document.createElement("input");
-    $(title).addClass("title");
-    var ul = document.createElement('ul');
-    $(div).append(title);
-    $(div).append(ul);
-    $(div).append("<button class=addlist-btn>Add list</button>");
-    $(ul).addClass('list');
-    func(ul, id);
-        
-
-        
-$('.addlist-btn').on("click", function(){
-    
-    events.addNote(id, $("#" + $(div).attr('id') + " .title").val(), arr)});        
-    
-    
-    },
-
     
     
 update: function(id){
@@ -211,22 +159,6 @@ $(save).on("click", function(){events.update(id, $("#" + id + " .title").val(), 
 
 
 
-//redraw UI in listing
-function func(ul ,id){    
-var li = document.createElement('li');
-var linput = document.createElement('input');
-$(linput).addClass('listInput');
-$(ul).append(li);
-$(li).append(linput);       
-$('#' + id + ' .listInput').keypress(function(event){
-var keycode = (event.keyCode ? event.keyCode : event.which);
-if(keycode == '13'){
-arr.push($('#' + id + ' .listInput').val());
-$('#' + id + ' .listInput').replaceWith("<h4>"+ $('#' + id + ' .listInput').val() +"</h4>");
-
-    func(ul, id);
-}});
-    }
         
 
 
