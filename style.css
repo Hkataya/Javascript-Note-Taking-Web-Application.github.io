@@ -213,7 +213,8 @@ border-style:none;
 }
     .note{
 
-            vertical-align: middle;
+        vertical-align: middle;
+        width:230px;
     }
     .action-btn{
     
@@ -225,7 +226,7 @@ border-style:none;
     
 }
 
-@media only screen and (max-width: 630px) {
+@media only screen and (max-width: 550px) {
   
     #main{
 
@@ -241,8 +242,9 @@ border-style:none;
     
     .note{
         
-        vertical-align: middle;
-        
+    vertical-align: middle;
+    
+
     }
     
     
