@@ -13,11 +13,7 @@ createNote : function(id){
 var div  = document.createElement("div");
 $(div).addClass("note");
 $(div).attr('id', id);
-
-var draggable = document.createElement("div");
-draggable.innerHTML= "Click here to move";
-$(draggable).addClass("divhead");
-$(draggable).attr('id', id + 'header');
+    
 
 var title = document.createElement("input");
 $(title).addClass("title");
@@ -26,15 +22,14 @@ $(desc).addClass("desc");
 var add = document.createElement('button');
 $(add).addClass("add-btn");  
 $(add).html("<ion-icon class='add-btn-icon' name='add'></ion-icon>");
-    
+  
 //Appending ui elements
-$(div).append(draggable);
 $(div).append(title);
 $(div).append(desc);
 $(div).append(add);
 $("#main").append(div);
 
- dragElement(div);
+ //dragElement(div);
     
     
   //event handlers  
@@ -59,9 +54,7 @@ if(keycode == '13'){
     
 $(add).on("click", function(){
     
-    
-// height: calc(100% - 50px);
-   //$("#" + $(this).parent().attr("id")).css({ 'margin-top': '-20px'});
+
      events.addNote($(this).parent().attr("id"), $('#'+$(this).parent().attr("id")+ ' .title').val(),[$('#'+$(this).parent().attr("id")+ ' .desc').val()] );
      
      });
@@ -78,13 +71,11 @@ $(elem).empty();
 
 //here
 var draggable = document.createElement("div");
-draggable.innerHTML= "Click here to move";
+draggable.innerHTML= title;
 $(draggable).addClass("divhead");
 $(draggable).attr('id', id + 'header');
-
     
-var elemTitle = document.createElement("h3");
-elemTitle.innerHTML = title;
+    
 
 var elemDesc = document.createElement("p");
 elemDesc.innerHTML = desc;
@@ -99,12 +90,11 @@ deleteBtn.innerHTML = "<ion-icon name='trash'></ion-icon>";
 
 
 $(elem).append(draggable);
-$(elem).append(elemTitle);
 $(elem).append(elemDesc);
 $(elem).append(updateBtn); 
 $(elem).append(deleteBtn);
 
-dragElement(document.getElementById(id));
+//dragElement(document.getElementById(id));
     
 $(updateBtn).on('click', function(){uiCntrl.update($(this).parent().attr("id"))});    
 $(deleteBtn).on("click", function(){events.deleteNote(this)});
@@ -159,13 +149,6 @@ $(save).on("click", function(){events.update(id, $("#" + id + " .title").val(), 
     }
 
     
-},
-
-
-backgroundImage: function(url){
-
-$('body').css({'background-image':'url('+url+')', 'background-size':'cover'} );
-    
 }
 
       
@@ -174,7 +157,7 @@ $('body').css({'background-image':'url('+url+')', 'background-size':'cover'} );
     
 }
 
-
+/*
 function dragElement(elmnt) {
     
     console.log(elmnt.id);
@@ -217,7 +200,7 @@ console.log("ss");
   }
 }
 
-        
+        */
 
 
 

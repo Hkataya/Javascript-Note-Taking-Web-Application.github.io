@@ -1,4 +1,16 @@
 
+window.onload = function(){
+
+var el = document.getElementById('main');
+var sortable = new Sortable(el, {
+    
+    animation: 150, 
+	easing: "cubic-bezier(1, 0, 0, 1)"
+
+});
+
+}
+
 
 //Handlers
 

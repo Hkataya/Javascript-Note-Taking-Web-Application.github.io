@@ -2,10 +2,38 @@ body{
     
     margin:0;
     font-family: sans-serif;
-       background-color: #23B5D3;
-    
+background: linear-gradient(261deg, #ff8d29, #d8d8cd);
+background-size: 400% 400%;
+
+-webkit-animation: Animation 40s ease infinite;
+-moz-animation: Animation 40s ease infinite;
+-o-animation: Animation 40s ease infinite;
+animation: Animation 40s ease infinite;
+
 }
 
+
+
+@-webkit-keyframes Animation {
+    0%{background-position:0% 45%}
+    50%{background-position:100% 56%}
+    100%{background-position:0% 45%}
+}
+@-moz-keyframes Animation {
+    0%{background-position:0% 45%}
+    50%{background-position:100% 56%}
+    100%{background-position:0% 45%}
+}
+@-o-keyframes Animation {
+    0%{background-position:0% 45%}
+    50%{background-position:100% 56%}
+    100%{background-position:0% 45%}
+}
+@keyframes Animation { 
+    0%{background-position:0% 45%}
+    50%{background-position:100% 56%}
+    100%{background-position:0% 45%}
+}
 
 .icon{
     
@@ -16,7 +44,7 @@ body{
 .action-btn{
     
     text-align: center;
-    color: #23B5D3;
+    color: #ff8d29;
     border-radius: 90px;
     background-color: whitesmoke;
    	box-shadow: 2px 2px 3px #999;
@@ -40,8 +68,8 @@ p{
 
 .note{
     
-    
-    position: absolute;
+    vertical-align: top; 
+    display: inline-block;
     z-index: 9;
     width:250px;
     background-color:whitesmoke;
@@ -50,17 +78,18 @@ p{
     overflow: hidden;
     border-style: solid;
     border-color: whitesmoke;
+    margin-right: 20px;
+    margin-bottom: 10px;
     
 }
 
 .divhead{
 
-
     
   padding: 10px;
   cursor: move;
   z-index: 10;
-  background-color: #2196F3;
+  background-color: #ff8d29;
   color: #fff;
 
 }
@@ -96,14 +125,20 @@ width: 100%;
     width:90%;
     margin-left: auto;
     margin-right: auto;
+    -moz-column-count: 4;
+    -webkit-column-count: 4;
+    column-count: 4;
+    -moz-column-gap: 1.2em;
+    -webkit-column-gap: 1.2em;
+    column-gap: 1.2em;
     
 }
 
 .add-btn{
    
     border-style: none;
-    color:#23B5D3;
-    background-color: #23B5D3;
+    color:transparent;
+  background-color: #ff8d29;
     width:100%;
     height:45px;
     bottom: 0;
