@@ -215,6 +215,13 @@ border-style:none;
 
             vertical-align: middle;
     }
+    .action-btn{
+    
+
+    right:20px;
+  
+}
+
     
 }
 
@@ -237,6 +244,15 @@ border-style:none;
         vertical-align: middle;
         
     }
+    
+    
+.action-btn{
+    
+
+    right:15px;
+  
+}
+
     
 }
 
