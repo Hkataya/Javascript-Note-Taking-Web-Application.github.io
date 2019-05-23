@@ -224,9 +224,15 @@ border-style:none;
 }
 
     
+.desc{
+    
+height: 130px;
+
+}
+    
 }
 
-@media only screen and (max-width: 550px) {
+@media only screen and (max-width: 540px) {
   
     #main{
 
