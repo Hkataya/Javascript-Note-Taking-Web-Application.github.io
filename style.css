@@ -41,29 +41,28 @@ p{
 .note{
     
     
-    display: block;
+    position: absolute;
+    z-index: 9;
     width:250px;
     background-color:whitesmoke;
     text-align:center;
     border-radius: 15px;    
     overflow: hidden;
-    margin-bottom: 30px;
+    border-style: solid;
+    border-color: whitesmoke;
     
 }
 
-.modal{
+.divhead{
+
+
     
-  position: absolute; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  left: 0;
-  top: 50;
-  width: 50%; /* Full width */
-  margin-left: auto;
-  margin-right: auto;
-  overflow: hidden; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-    
+  padding: 10px;
+  cursor: move;
+  z-index: 10;
+  background-color: #2196F3;
+  color: #fff;
+
 }
 
 .title{
@@ -92,20 +91,19 @@ width: 100%;
 
 
 #main{
-    
+
     margin-top: 4%;
     width:90%;
     margin-left: auto;
     margin-right: auto;
- 
-
+    
 }
 
 .add-btn{
    
     border-style: none;
     color:#23B5D3;
-    background-image: linear-gradient(to right, #134E5E, #71B280);
+    background-color: #23B5D3;
     width:100%;
     height:45px;
     bottom: 0;

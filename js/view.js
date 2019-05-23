@@ -13,6 +13,12 @@ createNote : function(id){
 var div  = document.createElement("div");
 $(div).addClass("note");
 $(div).attr('id', id);
+
+var draggable = document.createElement("div");
+draggable.innerHTML= "Click here to move";
+$(draggable).addClass("divhead");
+$(draggable).attr('id', id + 'header');
+
 var title = document.createElement("input");
 $(title).addClass("title");
 var desc = document.createElement("textarea");
@@ -22,11 +28,13 @@ $(add).addClass("add-btn");
 $(add).html("<ion-icon class='add-btn-icon' name='add'></ion-icon>");
     
 //Appending ui elements
+$(div).append(draggable);
 $(div).append(title);
 $(div).append(desc);
 $(div).append(add);
 $("#main").append(div);
-    
+
+ dragElement(div);
     
     
   //event handlers  
@@ -49,11 +57,11 @@ if(keycode == '13'){
 }});
 
     
-    
 $(add).on("click", function(){
     
-
-   $("#" + $(this).parent().attr("id")).css({ 'clear': 'both', 'overflow':'visible'});
+    
+// height: calc(100% - 50px);
+   //$("#" + $(this).parent().attr("id")).css({ 'margin-top': '-20px'});
      events.addNote($(this).parent().attr("id"), $('#'+$(this).parent().attr("id")+ ' .title').val(),[$('#'+$(this).parent().attr("id")+ ' .desc').val()] );
      
      });
@@ -63,12 +71,23 @@ $(add).on("click", function(){
   
     
 appendNote : function(id,  title, desc){
+
 var elem = $("#" + id);
-$(elem).empty();     
 
-    $(elem).html("<h3>"+ title +"</h3> <p>"+desc+"</p>");
+$(elem).empty(); 
 
+//here
+var draggable = document.createElement("div");
+draggable.innerHTML= "Click here to move";
+$(draggable).addClass("divhead");
+$(draggable).attr('id', id + 'header');
 
+    
+var elemTitle = document.createElement("h3");
+elemTitle.innerHTML = title;
+
+var elemDesc = document.createElement("p");
+elemDesc.innerHTML = desc;
     
 var updateBtn = document.createElement("button");
 $(updateBtn).addClass('update-btn');
@@ -78,14 +97,17 @@ var deleteBtn  = document.createElement("button");
 $(deleteBtn).addClass('delete-btn');
 deleteBtn.innerHTML = "<ion-icon name='trash'></ion-icon>";
 
-    
 
+$(elem).append(draggable);
+$(elem).append(elemTitle);
+$(elem).append(elemDesc);
 $(elem).append(updateBtn); 
 $(elem).append(deleteBtn);
+
+dragElement(document.getElementById(id));
+    
 $(updateBtn).on('click', function(){uiCntrl.update($(this).parent().attr("id"))});    
 $(deleteBtn).on("click", function(){events.deleteNote(this)});
-
-  
 }
     
 ,
@@ -146,15 +168,54 @@ $('body').css({'background-image':'url('+url+')', 'background-size':'cover'} );
     
 }
 
-
       
+  
+    
+    
 }
 
 
+function dragElement(elmnt) {
+    
+    console.log(elmnt.id);
+  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+  if (document.getElementById(elmnt.id + "header")) {
+                  
+console.log("ss");
+    // if present, the header is where you move the DIV from:
+    document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+  } 
 
+  function dragMouseDown(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // get the mouse cursor position at startup:
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    document.onmouseup = closeDragElement;
+    // call a function whenever the cursor moves:
+    document.onmousemove = elementDrag;
+  }
 
+  function elementDrag(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // calculate the new cursor position:
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    // set the element's new position:
+    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+  }
 
-
+  function closeDragElement() {
+    // stop moving when mouse button is released:
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
+}
 
         
 

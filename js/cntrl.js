@@ -1,55 +1,16 @@
 
-   
-var API_KEY = '7873892-36c57956e22b44e97867783f8';
-
-
- var grid;
-  function init() {
-    grid = new Minigrid({
-      container: '.cards',
-      item: '.card',
-      gutter: 12
-    });
-    grid.mount();
-  }
-  
-  // mount
-  function update() {
-    grid.mount();
-  }
-
-  document.addEventListener('DOMContentLoaded', init);
-  window.addEventListener('resize', update);
-
-
 
 //Handlers
 
 $(".action-btn").on("click", function(){
  
+
     events.generate();  
     
     });
 
 
-$(window).on("load", function(){
-    
-var URL = "https://pixabay.com/api/?key="+API_KEY+"&q="+encodeURIComponent('landscape');
-$.getJSON(URL, function(data){
-if (parseInt(data.totalHits) > 0)
-    {
-    
-        var index = Math.floor(Math.random() * parseInt(data.hits.length));
-        console.log(index);
-        uiCntrl.backgroundImage(data.hits[index].largeImageURL);
-    
-    }
-        else
-    console.log('No hits');
-});
 
-    
-});
 
 
 //Utility Functions
