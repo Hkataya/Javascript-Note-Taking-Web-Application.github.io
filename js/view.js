@@ -7,6 +7,19 @@ var arr= [];
 
 var uiCntrl = {
 
+    
+loadNote: function(){
+    
+    const data = {...localStorage}; 
+    for(var prop in data)
+        {
+        var obj = JSON.parse(data[prop]);
+        console.log(obj);
+        uiCntrl.appendNote(prop, obj.title, obj.desc[0], 1);
+        }
+    
+} ,
+    
 createNote : function(id){
     
 //Drawing ui elements
@@ -63,41 +76,50 @@ $(add).on("click", function(){
 },
   
     
-appendNote : function(id,  title, desc){
+appendNote : function(id,  title, desc, option){
 
-var elem = $("#" + id);
-
+console.log(id);
+    var elem;
+    
+if(option){
+    
+    
+    elem = document.createElement("div"); 
+    $(elem).attr("id", id);
+    $(elem).addClass("note");
+    
+}
+    
+else
+    
+    elem = $("#" + id);
+    
+    
 $(elem).empty(); 
 
-//here
+
 var draggable = document.createElement("div");
 draggable.innerHTML= title;
 $(draggable).addClass("divhead");
 $(draggable).attr('id', id + 'header');
     
-    
 
 var elemDesc = document.createElement("p");
 elemDesc.innerHTML = desc;
-    
 var updateBtn = document.createElement("button");
 $(updateBtn).addClass('update-btn');
 updateBtn.innerHTML = "<ion-icon name='create'></ion-icon>";
-  
 var deleteBtn  = document.createElement("button");
 $(deleteBtn).addClass('delete-btn');
 deleteBtn.innerHTML = "<ion-icon name='trash'></ion-icon>";
-
-
 $(elem).append(draggable);
 $(elem).append(elemDesc);
 $(elem).append(updateBtn); 
 $(elem).append(deleteBtn);
-
-//dragElement(document.getElementById(id));
-    
 $(updateBtn).on('click', function(){uiCntrl.update($(this).parent().attr("id"))});    
 $(deleteBtn).on("click", function(){events.deleteNote(this)});
+if(option)
+$("#main").append(elem); 
 }
     
 ,
@@ -113,30 +135,14 @@ deleteNote : function(elem){
     
 update: function(id){
     
+    
     var innerArr = [];   
     var save = document.createElement("button");
     save.innerHTML = "save";
-
     $("#" + id).empty();
-   
-if(events.retrieve(id).desc.length>1){
-$("#" + id).append("<input  class=title value = "+events.retrieve(id).title+"  />");
-for(var i =0; i<events.retrieve(id).desc.length; i++){
-
-$("#" + id).append("<input class=listItem   value = "+events.retrieve(id).desc[i]+"  />"); 
-}
-        
-        $("#" + id).append(save);
-        $(save).on("click", function(){
-        $("#" + id + " .listItem").each(function(i, obj){
-        innerArr.push($(obj).val());
-            
-        });  
-        events.update(id, $("#" + id + " .title").val(), innerArr)});
-    }
     
-        
-    else{
+   
+
     $("#" + id).html("<input class=title  value = '"+events.retrieve(id).title+"'  /> <textarea class=desc> "+events.retrieve(id).desc[0]+"  </textarea>"); 
         
    $("#" + id).append(save);
@@ -146,62 +152,13 @@ $("#"+id+" .desc").keypress(function(event){
 var keycode = (event.keyCode ? event.keyCode : event.which);
 if(keycode == '13'){  events.update(id, $("#" + id + " .title").val(), [$("#" + id + " .desc").val()] )    }});
 $(save).on("click", function(){events.update(id, $("#" + id + " .title").val(), [$("#" + id + " .desc").val()] )});
-    }
+
 
     
 }
-
-      
-  
     
     
 }
-
-/*
-function dragElement(elmnt) {
-    
-    console.log(elmnt.id);
-  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-  if (document.getElementById(elmnt.id + "header")) {
-                  
-console.log("ss");
-    // if present, the header is where you move the DIV from:
-    document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
-  } 
-
-  function dragMouseDown(e) {
-    e = e || window.event;
-    e.preventDefault();
-    // get the mouse cursor position at startup:
-    pos3 = e.clientX;
-    pos4 = e.clientY;
-    document.onmouseup = closeDragElement;
-    // call a function whenever the cursor moves:
-    document.onmousemove = elementDrag;
-  }
-
-  function elementDrag(e) {
-    e = e || window.event;
-    e.preventDefault();
-    // calculate the new cursor position:
-    pos1 = pos3 - e.clientX;
-    pos2 = pos4 - e.clientY;
-    pos3 = e.clientX;
-    pos4 = e.clientY;
-    // set the element's new position:
-    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
-  }
-
-  function closeDragElement() {
-    // stop moving when mouse button is released:
-    document.onmouseup = null;
-    document.onmousemove = null;
-  }
-}
-
-        */
-
 
 
 

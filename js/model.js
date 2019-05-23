@@ -36,13 +36,7 @@ if(Note.instances[i].id == id){
 Note.retrieve = function(id){
     
     
-    for(var i =0; i<Note.instances.length; i++){
-if(Note.instances[i].id == id){
-return Note.instances[i];   
-}
-        else
-            console.log('not found');
-}
+return localStorage.getItem(id);
     
 }
 

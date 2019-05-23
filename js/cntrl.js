@@ -1,13 +1,20 @@
 
 window.onload = function(){
 
-var el = document.getElementById('main');
+  
+    
+
+    var el = document.getElementById('main');
+
 var sortable = new Sortable(el, {
     
     animation: 150, 
 	easing: "cubic-bezier(1, 0, 0, 1)"
 
 });
+
+    
+uiCntrl.loadNote();  
 
 }
 
@@ -44,7 +51,8 @@ var events = {
     
     
 generate: function(){
-   uiCntrl.createNote(randomString());
+   
+uiCntrl.createNote(randomString());
     
     
 },
@@ -52,10 +60,11 @@ generate: function(){
     
 addNote: function(id, title, desc){
 
+
 Note.create({"id":id, "title":title, "desc":desc});  
 uiCntrl.appendNote(id, $('#'+id + ' .title').val(), desc);
-        
-        
+localStorage.setItem(id,JSON.stringify({"title":title, "desc":desc}));
+    
     }, 
     
 
@@ -64,6 +73,7 @@ deleteNote: function(self){
         
         Note.delete($(self).parent().attr("id"));
         uiCntrl.deleteNote($(self).parent());
+         localStorage.removeItem($(self).parent().attr("id"));
         
     },
     
@@ -72,14 +82,15 @@ update: function(id, title, desc){
     
     Note.update({"id":id, "title":title, "desc":desc });
     uiCntrl.appendNote(id, title, desc);
-    
+    localStorage.removeItem(id);
+    localStorage.setItem(id,JSON.stringify({"title":title, "desc":desc}));
     
 },
     
 
 retrieve: function(id){
         
-       return Note.retrieve(id); 
+       return JSON.parse(Note.retrieve(id)); 
         
     }
     
