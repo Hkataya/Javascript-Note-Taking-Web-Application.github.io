@@ -2,11 +2,6 @@
 var arr= [];
 
 
-$(".action-btn").on("click", function(){
- 
-    events.generate(); 
-    });
-
 
 
 
@@ -16,7 +11,6 @@ createNote : function(id){
     
 //Drawing ui elements
 var div  = document.createElement("div");
-
 $(div).addClass("note");
 $(div).attr('id', id);
 var title = document.createElement("input");
@@ -25,8 +19,7 @@ var desc = document.createElement("textarea");
 $(desc).addClass("desc");
 var add = document.createElement('button');
 $(add).addClass("add-btn");  
-add.innerHTML = "+";
-    
+$(add).html("<ion-icon class='add-btn-icon' name='add'></ion-icon>");
     
 //Appending ui elements
 $(div).append(title);
@@ -58,8 +51,9 @@ if(keycode == '13'){
     
     
 $(add).on("click", function(){
-         
-        
+    
+
+   $("#" + $(this).parent().attr("id")).css({ 'clear': 'both', 'overflow':'visible'});
      events.addNote($(this).parent().attr("id"), $('#'+$(this).parent().attr("id")+ ' .title').val(),[$('#'+$(this).parent().attr("id")+ ' .desc').val()] );
      
      });
@@ -78,11 +72,11 @@ $(elem).empty();
     
 var updateBtn = document.createElement("button");
 $(updateBtn).addClass('update-btn');
-updateBtn.innerHTML = "<i class='fas fa-edit'></i>";
+updateBtn.innerHTML = "<ion-icon name='create'></ion-icon>";
   
 var deleteBtn  = document.createElement("button");
 $(deleteBtn).addClass('delete-btn');
-deleteBtn.innerHTML = "<i class='fas fa-trash'></i>";
+deleteBtn.innerHTML = "<ion-icon name='trash'></ion-icon>";
 
     
 
@@ -91,11 +85,9 @@ $(elem).append(deleteBtn);
 $(updateBtn).on('click', function(){uiCntrl.update($(this).parent().attr("id"))});    
 $(deleteBtn).on("click", function(){events.deleteNote(this)});
 
-
-
-    
-    
+  
 }
+    
 ,
     
 deleteNote : function(elem){
@@ -105,9 +97,7 @@ deleteNote : function(elem){
    
    
    } ,
-    
-    
-    
+     
     
 update: function(id){
     
@@ -147,8 +137,15 @@ $(save).on("click", function(){events.update(id, $("#" + id + " .title").val(), 
     }
 
     
-}
+},
+
+
+backgroundImage: function(url){
+
+$('body').css({'background-image':'url('+url+')', 'background-size':'cover'} );
     
+}
+
 
       
 }

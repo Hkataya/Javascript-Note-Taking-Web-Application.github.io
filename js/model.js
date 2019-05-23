@@ -9,9 +9,6 @@ var Note = function(slot){
 Note.instances = [];
 
 
-
-
-
 Note.create = function(slot){
 
 var note  = new Note(slot);
