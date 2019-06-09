@@ -4,26 +4,38 @@
 <link rel="stylesheet" type="text/css" href="style.css" />
 <script src="https://unpkg.com/ionicons@4.5.5/dist/ionicons.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
-
+<link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+    
     
 </head>
 
 <body>
 
 
-     <h1 style="text-align: center; margin-top: 50px;color: white"> Simple Note Taking App </h1>
-<div id="main" class="container">
+    <div class="mainHeader">
     
+        <span class="noteLogo"><ion-icon name="today"></ion-icon> </span>
+        
+    <h1 > NoteWall </h1>
+    <p> A digital wall for your ideas </p>
+        
+    </div>
+     
    
+
+    <div id="main" class="container">
+    
     
     </div>
     
+    <p class="inst">Click the  "+"  to add a note </p>
     
-    <button class="action-btn"><ion-icon class="icon" name="add"></ion-icon></button>
-   
-
+    <a class="github" href="https://github.com/hkataya"><img width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_right_gray_6d6d6d.png?resize=149%2C149" class="attachment-full size-full" alt="View me on GitHub" data-recalc-dims="1"></a>
+   <button class="action-btn"><ion-icon class="icon" name="add"></ion-icon></button>
+ 
   
 <script src="js/jquery-3.3.1.min.js"> </script>   
+<script src="js/jcolor.js"> </script>
 <script src="js/model.js" ></script>
 <script src="js/cntrl.js" ></script>
 <script src="js/view.js"> </script>

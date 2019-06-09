@@ -1,9 +1,13 @@
 
 window.onload = function(){
 
-  
+  console.log(localStorage.length);
     
-
+if(localStorage.length == 0)
+        document.getElementsByClassName("inst")[0].style.display = "block";
+    else
+        document.getElementsByClassName("inst")[0].style.display = "none";
+    
     var el = document.getElementById('main');
 
 var sortable = new Sortable(el, {
@@ -22,7 +26,8 @@ uiCntrl.loadNote();
 //Handlers
 
 $(".action-btn").on("click", function(){
- 
+    
+ document.getElementsByClassName("inst")[0].style.display = "none";
 
     events.generate();  
     
@@ -93,6 +98,7 @@ retrieve: function(id){
        return JSON.parse(Note.retrieve(id)); 
         
     }
+    
     
     
 }        

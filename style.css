@@ -1,44 +1,51 @@
 body{
     
     margin:0;
-    font-family: sans-serif;
-background: linear-gradient(261deg, #ff8d29, #d8d8cd);
-background-size: 400% 400%;
+    font-family: 'Lato', sans-serif;
+    background-color: #f8f8f8;
+}
 
--webkit-animation: Animation 40s ease infinite;
--moz-animation: Animation 40s ease infinite;
--o-animation: Animation 40s ease infinite;
-animation: Animation 40s ease infinite;
+.mainHeader{
+
+    text-align: center;color: white;background-color: #ff8d29;
+        
+    padding-bottom: 5px;
+}
+
+.noteLogo{
+
+position: absolute;
+    top: 5;
+    left: 0;
+    font-size: 50px;
 
 }
 
+.mainHeader h1{
+    padding-top: 15px;
+}
+
+.mainHeader p{
+    padding-top: 15px;
+}
 
 
-@-webkit-keyframes Animation {
-    0%{background-position:0% 45%}
-    50%{background-position:100% 56%}
-    100%{background-position:0% 45%}
-}
-@-moz-keyframes Animation {
-    0%{background-position:0% 45%}
-    50%{background-position:100% 56%}
-    100%{background-position:0% 45%}
-}
-@-o-keyframes Animation {
-    0%{background-position:0% 45%}
-    50%{background-position:100% 56%}
-    100%{background-position:0% 45%}
-}
-@keyframes Animation { 
-    0%{background-position:0% 45%}
-    50%{background-position:100% 56%}
-    100%{background-position:0% 45%}
-}
 
 .icon{
     
     font-size: 35px;
     
+}
+
+.inst{
+
+     position: fixed; /* or absolute */
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+    
+
 }
 
 .action-btn{
@@ -57,7 +64,13 @@ animation: Animation 40s ease infinite;
 }
 
 
+.github{
 
+    position: absolute;
+    top: 0;
+    right: 0;
+
+}
 
 p{
     
@@ -72,38 +85,43 @@ p{
     display: inline-block;
     z-index: 9;
     width:250px;
-    background-color:whitesmoke;
+    background-color:white;
     text-align:center;
     border-radius: 15px;    
     overflow: hidden;
-    border-style: solid;
-    border-color: whitesmoke;
+
     margin-right: 20px;
-    margin-bottom: 10px;
+    margin-bottom: 16px;
+    -webkit-box-shadow: -4px 6px 15px -8px rgba(0,0,0,0.75);
+-moz-box-shadow: -4px 6px 15px -8px rgba(0,0,0,0.75);
+box-shadow: -4px 6px 15px -8px rgba(0,0,0,0.75);
     
 }
 
 .divhead{
 
     
-  padding: 10px;
-  cursor: move;
-  z-index: 10;
-  background-color: #ff8d29;
-  color: #fff;
+    padding: 13px;
+    cursor: move;
+    z-index: 10;
+    border-bottom:solid;
+    border-bottom-width: 1px;
+    border-bottom-color: lightgrey;
+    color:black;
 
 }
 
 .title{
     
-    margin-left: 10px;
+    margin-left: 1px;
     min-height: 50px;
     width: 100%;
     border-style:none;
     border-bottom: solid;
     border-bottom-color:gainsboro;
     border-bottom-width: 1;
-    background-color:whitesmoke;
+    background-color: white;
+
     
 }
 
@@ -111,7 +129,7 @@ p{
 .desc{
     
 height: 170px;
-background-color:whitesmoke;  
+background-color:white;  
 border-style:none;
 width: 100%;
 }
@@ -151,7 +169,6 @@ width: 100%;
     text-align: center;
     font-size: 25px;
     margin-bottom: 10px;
-
 }
 
 
@@ -164,20 +181,13 @@ width: 100%;
     
 }
 
-.update-btn{
+.btn{
 
 border-style:none;
     background-color: transparent;
 
 }
 
-.delete-btn{
-
-border-style:none;
-    background-color: transparent;
-
-    
-}
 
 
 

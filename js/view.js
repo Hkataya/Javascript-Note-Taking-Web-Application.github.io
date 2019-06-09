@@ -34,14 +34,14 @@ var desc = document.createElement("textarea");
 $(desc).addClass("desc");
 var add = document.createElement('button');
 $(add).addClass("add-btn");  
-$(add).html("<ion-icon class='add-btn-icon' name='add'></ion-icon>");
+$(add).html("<ion-icon class='add-btn-icon' name='add'></ion-icon>");   
   
 //Appending ui elements
 $(div).append(title);
 $(div).append(desc);
 $(div).append(add);
 $("#main").append(div);
-
+    
  //dragElement(div);
     
     
@@ -83,11 +83,11 @@ console.log(id);
     
 if(option){
     
-    
     elem = document.createElement("div"); 
     $(elem).attr("id", id);
     $(elem).addClass("note");
-    
+
+
 }
     
 else
@@ -107,17 +107,30 @@ $(draggable).attr('id', id + 'header');
 var elemDesc = document.createElement("p");
 elemDesc.innerHTML = desc;
 var updateBtn = document.createElement("button");
-$(updateBtn).addClass('update-btn');
+$(updateBtn).addClass('btn');
 updateBtn.innerHTML = "<ion-icon name='create'></ion-icon>";
 var deleteBtn  = document.createElement("button");
-$(deleteBtn).addClass('delete-btn');
+$(deleteBtn).addClass('btn');
 deleteBtn.innerHTML = "<ion-icon name='trash'></ion-icon>";
+var colorBtn = document.createElement("button");
+$(colorBtn).addClass('btn');
+colorBtn.innerHTML = "<ion-icon name='color-palette'></ion-icon>";
+    
+    
 $(elem).append(draggable);
 $(elem).append(elemDesc);
 $(elem).append(updateBtn); 
 $(elem).append(deleteBtn);
+$(elem).append(colorBtn);
+    
+   
 $(updateBtn).on('click', function(){uiCntrl.update($(this).parent().attr("id"))});    
 $(deleteBtn).on("click", function(){events.deleteNote(this)});
+$(colorBtn).on("click", function(){
+color(this, document.getElementById(id));   
+});
+    
+    
 if(option)
 $("#main").append(elem); 
 }
