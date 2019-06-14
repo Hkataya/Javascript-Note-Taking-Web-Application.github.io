@@ -68,7 +68,7 @@ addNote: function(id, title, desc){
 
 Note.create({"id":id, "title":title, "desc":desc});  
 uiCntrl.appendNote(id, $('#'+id + ' .title').val(), desc);
-localStorage.setItem(id,JSON.stringify({"title":title, "desc":desc}));
+localStorage.setItem(id,JSON.stringify({"title":title, "desc":desc, "color": "white"}));
     
     }, 
     
@@ -86,12 +86,18 @@ deleteNote: function(self){
 update: function(id, title, desc){
     
     Note.update({"id":id, "title":title, "desc":desc });
-    uiCntrl.appendNote(id, title, desc);
+    uiCntrl.appendNote(id, title, desc, 0, document.getElementById(id).style.backgroundColor);
     localStorage.removeItem(id);
-    localStorage.setItem(id,JSON.stringify({"title":title, "desc":desc}));
+    localStorage.setItem(id,JSON.stringify({"title":title, "desc":desc, "color":document.getElementById(id).style.backgroundColor}));
     
 },
+
+colorUpdate : function(id, title, desc, color){
+
+     localStorage.setItem(id,JSON.stringify({"title":title, "desc":desc, "color":color}));
     
+}
+    ,
 
 retrieve: function(id){
         

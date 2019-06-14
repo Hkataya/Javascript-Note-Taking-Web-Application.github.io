@@ -15,7 +15,7 @@ loadNote: function(){
         {
         var obj = JSON.parse(data[prop]);
         console.log(obj);
-        uiCntrl.appendNote(prop, obj.title, obj.desc[0], 1);
+        uiCntrl.appendNote(prop, obj.title, obj.desc, 1, obj.color);
         }
     
 } ,
@@ -76,7 +76,16 @@ $(add).on("click", function(){
 },
   
     
-appendNote : function(id,  title, desc, option){
+appendNote : function(id,  title, desc, option, bgColor){
+   
+    var c;
+    
+    if(bgColor === undefined){
+        console.log("s");
+        c = "#ffffff";
+    }
+    else
+        c= bgColor;
 
 console.log(id);
     var elem;
@@ -86,7 +95,7 @@ if(option){
     elem = document.createElement("div"); 
     $(elem).attr("id", id);
     $(elem).addClass("note");
-
+    elem.style.backgroundColor = c;
 
 }
     
@@ -96,8 +105,6 @@ else
     
     
 $(elem).empty(); 
-
-
 var draggable = document.createElement("div");
 draggable.innerHTML= title;
 $(draggable).addClass("divhead");
@@ -115,7 +122,7 @@ deleteBtn.innerHTML = "<ion-icon name='trash'></ion-icon>";
 var colorBtn = document.createElement("button");
 $(colorBtn).addClass('btn');
 colorBtn.innerHTML = "<ion-icon name='color-palette'></ion-icon>";
-    
+
     
 $(elem).append(draggable);
 $(elem).append(elemDesc);
@@ -123,16 +130,25 @@ $(elem).append(updateBtn);
 $(elem).append(deleteBtn);
 $(elem).append(colorBtn);
     
-   
 $(updateBtn).on('click', function(){uiCntrl.update($(this).parent().attr("id"))});    
 $(deleteBtn).on("click", function(){events.deleteNote(this)});
+
+ var setColor = function(code){
+       events.colorUpdate(id, title, desc, code);
+    }
+ 
+    
 $(colorBtn).on("click", function(){
-color(this, document.getElementById(id));   
+
+
+color(this, document.getElementById(id), undefined , setColor);   
+
 });
     
     
 if(option)
 $("#main").append(elem); 
+  
 }
     
 ,

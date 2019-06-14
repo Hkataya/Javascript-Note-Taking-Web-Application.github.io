@@ -4,16 +4,18 @@
    var clrArray;
 
 //Default function that is being called
-var color = function(selector, elem,colors){
+var color = function(selector, elem,colors, func){
             
- popup(selector,elem,colors);
+ popup(selector,elem,colors, func);
 
     
 }
 
 
 //creates inner division 
-function popup( selector, elem, colors){
+function popup( selector, elem, colors, func){
+    
+
     
 if(typeof colors !== "undefined"){
      clrArray = colors;
@@ -59,7 +61,7 @@ for(var i=0; i<colorStlye.length; i++)
         
     wrapper.remove();
     select.style.pointerEvents = "auto";
-   
+        func("#" + this.id);
 });
     
 }
